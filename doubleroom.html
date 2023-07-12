@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Room Rate Calculator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <style>
+        .container1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .calendar-container {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .calculator {
+            flex: 1;
+        }
+        .calculator input[type="number"] {
+            width: 50px;
+            padding: 5px;
+        }
+        .calculator button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <h1 class="logo"><a href="index.html">PriceWhizz</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About Us</a></li>
+          <li><a class="nav-link scrollto" href="#services">Services</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contact Us</a></li>
+
+          <li><a class="nav-link scrollto" href="#team">Resources</a></li>
+         
+          
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+    <div class="container1">
+        <!-- Calendar -->
+        <div class="calendar-container">
+            <h2>Calendar</h2>
+            <div class="form-group">
+                <label for="selected-date">Select a Date:</label>
+                <input type="text" id="selected-date" class="form-control" placeholder="Select a date">
+            </div>
+        </div>
+
+        <!-- Room Rate Calculator -->
+        <div class="calculator">
+            <h2>Room Rate Calculator</h2>
+            <div class="form-group">
+                <label for="base-price">Base Price:</label>
+                <input type="number" id="base-price" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="current-occupancy">Current Occupancy:</label>
+                <input type="number" id="current-occupancy" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="market-demand">Market Demand:</label>
+                <input type="number" id="market-demand" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="your-adjustments">Your Adjustments:</label>
+                <input type="number" id="your-adjustments" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="competitor-average">Competitor Average:</label>
+                <input type="number" id="competitor-average" class="form-control">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" onclick="calculateTotal()">Apply/Modify</button>
+            </div>
+            <div class="form-group">
+                <label for="total">Total:</label>
+                <span id="total" class="form-control"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#selected-date");
+
+        function calculateTotal() {
+            var basePrice = parseFloat(document.getElementById("base-price").value) || 0;
+            var currentOccupancy = parseFloat(document.getElementById("current-occupancy").value) || 0;
+            var marketDemand = parseFloat(document.getElementById("market-demand").value) || 0;
+            var yourAdjustments = parseFloat(document.getElementById("your-adjustments").value) || 0;
+            var competitorAverage = parseFloat(document.getElementById("competitor-average").value) || 0;
+
+            var total = basePrice + currentOccupancy + marketDemand + yourAdjustments + competitorAverage;
+            document.getElementById("total").textContent = "$" + total.toFixed(2);
+        }
+    </script>
+</body>
+</html>
